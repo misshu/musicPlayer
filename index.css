@@ -1,0 +1,128 @@
+body{
+    background: rgba(10, 40, 20, 0.5);
+    color: rgba(255, 255, 255, .5);
+}
+.music{
+    width: 80%;
+    margin: 35px auto 0px auto;
+    border-radius: 5px;
+}
+.photo{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    margin: 60px auto;
+}
+.photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+.song{
+    width: 260px;
+    margin: 35px auto;
+    text-align: center;
+    overflow: hidden;
+}
+.song-name, .singer{
+    font-size: 22px;
+    padding: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;  
+    overflow: hidden;  
+}
+.singer{
+    font-size: 16px;
+}
+.basebar{
+    width: 260px;
+    height: 4px;
+    background-color: #666;
+    margin: 35px auto 10px;
+    border-radius: 2px;
+    position: relative;
+}
+.progressbar{
+    height: 100%;
+    width: 0;
+    background: red;
+    border-radius: 2px;
+    position: absolute;
+}
+.progress-btn{
+   position: absolute;
+   top: -4px;
+   left: 0;
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+   background-color: #fff;
+}
+.sing-time{
+    width: 300px;
+    margin: 0 auto;
+    padding: 0;
+}
+.time-total{
+    float: right;
+}
+
+.palerbutton{
+    display: flex;
+    justify-content: space-around;
+    padding: 35px 0px;
+    align-items: center;
+}
+.freebutton, .prebutton, .cutover, .nextbutton, .loopbutton{  
+    display: block;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.freebutton{
+    width: 20px;
+    height: 20px;
+    background: url(./img/loop.png)no-repeat;
+    background-size: 100% 100%;
+    background-size: cover;
+}
+.prebutton{
+    width: 45px;
+    height: 45px;
+    background: url(./img/previous.png)no-repeat;
+    background-size: 100% 100%;
+}
+.cutover{
+    width: 60px;
+    height: 60px;
+    background: url(./img/zanting.png)no-repeat;
+    background-size: 100% 100%;
+}
+.nextbutton{
+    width: 45px;
+    height: 45px;
+    background: url(./img/nextsc.png)no-repeat;
+    background-size: 100% 100%;
+}
+.loopbutton{
+    width: 30px;
+    height: 30px;
+    background: url(./img/btn_loop.png)no-repeat;
+    background-size: 100% 100%;
+}
+.hood{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.hood img{
+    width: 100%;
+    height: 100%;
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+}

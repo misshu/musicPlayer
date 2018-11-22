@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title> music--生活的调味料</title>
+    <link href="reset.css" rel="stylesheet">   
+    <link href="index.css" rel="stylesheet"> 
+  </head>
+  <body>
+  <div class="music">
+    <div class="album">
+      <div class="photo">
+        <img src="./img/music-take.jpg">
+      </div>
+      <div class="song">
+        <!-- 歌曲信息 -->
+        <p class="song-name">生活的调味品</p>
+        <p class="singer">music</p>
+      </div>
+    </div>
+    <div class="music-info">
+      <!-- 进度条 -->
+      <div class="basebar">
+        <span class="progressbar"></span>
+        <span class="progress-btn"></span>
+      </div>
+      <!-- 歌曲时间 -->
+      <div class="sing-time">
+          <span class="time-current">00:00</span>
+          <span class="time-total">00:00</span>
+      </div>
+      <audio id="audio-player"></audio>
+    </div>
+    <footer>
+    <div class="palerbutton">
+      <!-- 随机播放 -->
+      <span class="freebutton"></span>
+      <!-- 上一首播放 -->
+      <span class="prebutton"></span>
+      <!-- 暂停播放 -->
+      <span class="cutover"></span>
+      <!-- 下一首播放 -->
+      <span class="nextbutton"></span>
+      <!-- 循环播放 -->
+      <span class="loopbutton"></span>
+    </div> 
+    </footer>
+  </div>
+  <div class="hood">
+    <img src="./img/music-take.jpg">
+  </div>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/music-ajax.js"></script>
+  </body>
+</html>
