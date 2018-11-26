@@ -12,14 +12,14 @@ window.onload = function () {
     let cutover = document.querySelector('.cutover');//播放、暂停切换按钮
     let nextButton = document.querySelector('.nextbutton');//下一首按钮
     let loopButton = document.querySelector('.loopbutton');//循环播放按钮
-    let timeStart = document.querySelector('time-current');//显示歌曲播放时长 
+    let timeCurrent = document.querySelector('.time-current');//显示歌曲播放时长 
     let timeTotal = document.querySelector('.time-total');//歌曲总时长
+   
+    var num = 1; //用于判断是否播放，首次进入不自动播放
     
-    
-    var num = 1;
     //为播放按钮添加事件
     cutover.onclick = function () {
-        audioPlayer.onplaying = null;
+        audioPlayer.onplaying = null; //清除audio标签绑定事件
         if(audioPlayer.paused){
             cutover.style.backgroundImage = 'url(./img/cutover.png)';
             audioPlayer.play();
@@ -28,21 +28,26 @@ window.onload = function () {
             audioPlayer.pause();
         }
     }
+    //获取歌曲总时长
+    audioPlayer.addEventListener('canplay', function () {
+        timeTotal.innerHTML = rounding(audioPlayer.duration);
+    })
     //下一首按钮
     nextButton.onclick = function () {
         getMusic();
     }
     var isloading = false;
-    var progressTimer = setInterval(activeProgressBar);
+    var progressTimer = setInterval(activeProgressBar,300);
 
     //激活进度条
     function activeProgressBar () {
         let percentNum = Math.floor((audioPlayer.currentTime / audioPlayer.duration)*10000)/100 + '%';
         progressBar.style.width = percentNum;
         progressBtn.style.left = percentNum;
+        timeCurrent.innerHTML = rounding(audioPlayer.currentTime);
         if(percentNum == '100%' && !isloading && audioPlayer.loop){
             isloading = true;
-            getMusic();           
+            getMusic();        
         }
         if(audioPlayer.paused){
             cutover.style.backgroundImage = 'url(./img/zanting.png)';
@@ -69,11 +74,9 @@ window.onload = function () {
     progressBtn.addEventListener('touchend', function (e) {
         let percentNum = (e.changedTouches[0].pageX - progressBar.offsetLeft)/progressBar.offsetWidth;
         audioPlayer.currentTime = audioPlayer.duration * percentNum;
-        progressTimer = setInterval(activeProgressBar, 300)
-        
+        progressTimer = setInterval(activeProgressBar, 300);
     })
     
-
     //获取音乐
     function getMusic () {
         ajax({
@@ -97,7 +100,6 @@ window.onload = function () {
                     };
                     num ++;
                 }
-
             }
         })
     }
@@ -112,5 +114,17 @@ window.onload = function () {
             loopButton.style.backgroundImage = 'url(./img/btn_loop.png)';
         }
     }
+    //时间格式化
+   function rounding(t){
+    let m = Math.floor(t/60);
+    let s = Math.floor(t%60);
+    if(m <= 9){
+        m = '0' + m;
+    }
+    if(s <= 9){
+        s = '0' + s;
+    }
+    return m + ':' +s;
+}
 
 }

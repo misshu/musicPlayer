@@ -76,15 +76,15 @@ body{
     padding: 35px 0px;
     align-items: center;
 }
-.freebutton, .prebutton, .cutover, .nextbutton, .loopbutton{  
+.playlist, .prebutton, .cutover, .nextbutton, .loopbutton{  
     display: block;
     background-size: 100% 100%;
     cursor: pointer;
 }
-.freebutton{
+.playlist{
     width: 20px;
     height: 20px;
-    background: url(./img/loop.png)no-repeat;
+    background: url(./img/play-list.png)no-repeat;
     background-size: 100% 100%;
     background-size: cover;
 }
