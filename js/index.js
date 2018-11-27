@@ -76,18 +76,32 @@ window.onload = function () {
         audioPlayer.currentTime = audioPlayer.duration * percentNum;
         progressTimer = setInterval(activeProgressBar, 300);
     })
+
+    //点击图标改变运动的轨迹
+    
+    // 获取播放列表
+    function getPlayList () {
+        ajax({
+            meth: 'GET',
+            url: 'https://api.imjad.cn/cloudmusic/?type=playlist&id=477933082',
+            success: function(response){
+                let jsonObj = JSON.parse;
+
+            }
+        })
+    }
     
     //获取音乐
     function getMusic () {
         ajax({
-            method: 'GET',
-            url: 'http://api.jirengu.com/fm/getSong.php',
+            method: 'post',
+            url: 'https://api.imjad.cn/cloudmusic/?type=detail&id=28012031',
             success: function(response){
                 let jsonObj = JSON.parse(response);
                 let songObj = jsonObj['song'][0];
                 songName.innerHTML = songObj.title;
                 singer.innerHTML = songObj.artist;
-                photoImg.src = songObj.picture;
+                photoImg.src = songObj.picUrl;
                 audioPlayer.src = songObj.url;
                 audioPlayer.setAttribute('data-sid', songObj.sid);
                 audioPlayer.setAttribute('data-ssid', songObj.ssid);
@@ -105,8 +119,7 @@ window.onload = function () {
     }
     //循环
     loopButton.onclick = function (){
-        let status = audioPlayer.dataset.staus;
-        if(status === 'loop'){
+        if(audioPlayer.loop){
             audioPlayer.loop = false;
             loopButton.style.backgroundImage = 'url(./img/btn_loop_d.png)';
         }else{
