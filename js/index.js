@@ -57,7 +57,7 @@ window.onload = function () {
         }
     }
 
-    //进度条控制音乐播放进度
+    // 移动端进度条控制音乐播放进度
     progressBtn.addEventListener('touchstart', function () {
         clearInterval(progressTimer);
     })
@@ -77,31 +77,37 @@ window.onload = function () {
         progressTimer = setInterval(activeProgressBar, 300);
     })
 
-    //点击图标改变运动的轨迹
-    
-    // 获取播放列表
-    function getPlayList () {
+    // 获取频道
+    function getChannel () {
         ajax({
             meth: 'GET',
-            url: 'https://api.imjad.cn/cloudmusic/?type=playlist&id=477933082',
+            async: false,
+            url: 'http://api.jirengu.com/fm/getChannels.php',
             success: function(response){
                 let jsonObj = JSON.parse;
+                let channelArr = jsonObj['channels'];
+                getRandomChannel(channelArr);
+                getMusic();
 
             }
         })
+    }
+    //获取随机频道
+    function getRanddomChannel(channelArr){
+        
     }
     
     //获取音乐
     function getMusic () {
         ajax({
-            method: 'post',
-            url: 'https://api.imjad.cn/cloudmusic/?type=detail&id=28012031',
+            method: 'GET',
+            url: 'http://api.jirengu.com/fm/getSong.php',
             success: function(response){
                 let jsonObj = JSON.parse(response);
                 let songObj = jsonObj['song'][0];
                 songName.innerHTML = songObj.title;
                 singer.innerHTML = songObj.artist;
-                photoImg.src = songObj.picUrl;
+                photoImg.src = songObj.picture;
                 audioPlayer.src = songObj.url;
                 audioPlayer.setAttribute('data-sid', songObj.sid);
                 audioPlayer.setAttribute('data-ssid', songObj.ssid);
